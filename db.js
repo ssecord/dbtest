@@ -40,32 +40,32 @@ function queryDatabase(){
                 if (err) throw err;
         console.log('Created Notes table.');
     })
-    db.query('INSERT INTO notejam.users VALUES (?, ?, ?);', [1, 'user1@example.com', '$2a$10$mhkqpUvPPs.zoRSTiGAEKODOJMljkOY96zludIIw.Pop1UvQCTx8u'], 
+    db.query('INSERT INTO notejam.users (id, email, password) VALUES (?, ?, ?);', [1, 'user1@example.com', '$2a$10$mhkqpUvPPs.zoRSTiGAEKODOJMljkOY96zludIIw.Pop1UvQCTx8u'], 
             function (err, results, fields) {
                 if (err) throw err;
         else console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO notejam.users VALUES (?, ?, ?);', [2, 'user2@example.com', '$2a$10$mhkqpUvPPs.zoRSTiGAEKODOJMljkOY96zludIIw.Pop1UvQCTx8u'], 
+    db.query('INSERT INTO notejam.users (id, email, password) VALUES (?, ?, ?);', [2, 'user2@example.com', '$2a$10$mhkqpUvPPs.zoRSTiGAEKODOJMljkOY96zludIIw.Pop1UvQCTx8u'], 
             function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO notejam.pads VALUES (?, ?, ?);', [1, 'Pad 1', 1], 
+    db.query('INSERT INTO notejam.pads (id, name, user_id) VALUES (?, ?, ?);', [1, 'Pad 1', 1], 
     function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO notejam.pads VALUES (?, ?, ?);', [2, 'Pad 2', 1], 
+    db.query('INSERT INTO notejam.pads (id, name, user_id) VALUES (?, ?, ?);', [2, 'Pad 2', 1], 
     function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO notejam.notes VALUES (?, ?, ?, ?, ?, ?, ?);', [1, 1, 1, 'Note 1', 'Text', 1, 1], 
+    db.query('INSERT INTO notejam.notes (id, pad_id, user_id, name, text) VALUES (?, ?, ?, ?, ?);', [1, 1, 1, 'Note 1', 'Text'], 
     function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO notejam.notes VALUES (?, ?, ?, ?, ?, ?, ?);', [2, 1, 1, 'Note 2', 'Text', 1, 1], 
+    db.query('INSERT INTO notejam.notes (id, pad_id, user_id, name, text) VALUES (?, ?, ?, ?, ?);', [2, 1, 1, 'Note 2', 'Text'], 
     function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
