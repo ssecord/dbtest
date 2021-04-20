@@ -35,7 +35,7 @@ function queryDatabase(){
                 if (err) throw err;
         console.log('Created Pads table.');
     })
-    db.query('CREATE TABLE IF NOT EXISTS notes (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,pad_id INT REFERENCES notejam.pads(id),user_id INT NOT NULL REFERENCES notejam.users(id),name VARCHAR(100) NOT NULL,text text NOT NULL,created_at TIMESTAMP NOT NULL DEFAULT NOW (),updated_at TIMESTAMP NT NULL DEFAULT NOW() ON UPDATE NOW());', 
+    db.query('CREATE TABLE IF NOT EXISTS notes (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,pad_id INT REFERENCES notejam.pads(id),user_id INT NOT NULL REFERENCES notejam.users(id),name VARCHAR(100) NOT NULL,text text NOT NULL,created_at TIMESTAMP NOT NULL DEFAULT NOW (),updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW());', 
             function (err, results, fields) {
                 if (err) throw err;
         console.log('Created Notes table.');
