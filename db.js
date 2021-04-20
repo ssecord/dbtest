@@ -26,46 +26,46 @@ db.connect(
 });
 
 function queryDatabase(){
-    db.query('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,email VARCHAR(75) NOT NULL,password VARCHAR(128) NOT NULL);', function (err, results, fields) { 
+    db.query('CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,email VARCHAR(75) NOT NULL,password VARCHAR(128) NOT NULL);', function (err, results, fields) { 
         if (err) throw err; 
         console.log('Created Users table.');
     })
-    db.query('CREATE TABLE IF NOT EXISTS pads (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,name VARCHAR(100) NOT NULL,user_id INTEGER NOT NULL REFERENCES users(id));', 
+    db.query('CREATE TABLE IF NOT EXISTS pads (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,name VARCHAR(100) NOT NULL,user_id INT NOT NULL REFERENCES notejam.users(id));', 
             function (err, results, fields) {
                 if (err) throw err;
         console.log('Created Pads table.');
     })
-    db.query('CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,pad_id INTEGER REFERENCES pads(id),user_id INTEGER NOT NULL REFERENCES users(id),name VARCHAR(100) NOT NULL,text text NOT NULL,created_at default current_timestamp,updated_at default current_timestamp);', 
+    db.query('CREATE TABLE IF NOT EXISTS notes (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,pad_id INT REFERENCES notejam.pads(id),user_id INT NOT NULL REFERENCES notejam.users(id),name VARCHAR(100) NOT NULL,text text NOT NULL,created_at TIMESTAMP NOT NULL DEFAULT NOW (),updated_at TIMESTAMP NT NULL DEFAULT NOW() ON UPDATE NOW());', 
             function (err, results, fields) {
                 if (err) throw err;
         console.log('Created Notes table.');
     })
-    db.query('INSERT INTO users VALUES (?, ?, ?);', [1, 'user1@example.com', '$2a$10$mhkqpUvPPs.zoRSTiGAEKODOJMljkOY96zludIIw.Pop1UvQCTx8u'], 
+    db.query('INSERT INTO notejam.users VALUES (?, ?, ?);', [1, 'user1@example.com', '$2a$10$mhkqpUvPPs.zoRSTiGAEKODOJMljkOY96zludIIw.Pop1UvQCTx8u'], 
             function (err, results, fields) {
                 if (err) throw err;
         else console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO users VALUES (?, ?, ?);', [2, 'user2@example.com', '$2a$10$mhkqpUvPPs.zoRSTiGAEKODOJMljkOY96zludIIw.Pop1UvQCTx8u'], 
+    db.query('INSERT INTO notejam.users VALUES (?, ?, ?);', [2, 'user2@example.com', '$2a$10$mhkqpUvPPs.zoRSTiGAEKODOJMljkOY96zludIIw.Pop1UvQCTx8u'], 
             function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO pads VALUES (?, ?, ?);', [1, 'Pad 1', 1], 
+    db.query('INSERT INTO notejam.pads VALUES (?, ?, ?);', [1, 'Pad 1', 1], 
     function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO pads VALUES (?, ?, ?);', [2, 'Pad 2', 1], 
+    db.query('INSERT INTO notejam.pads VALUES (?, ?, ?);', [2, 'Pad 2', 1], 
     function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO notes VALUES (?, ?, ?, ?, ?, ?, ?);', [1, 1, 1, 'Note 1', 'Text', 1, 1], 
+    db.query('INSERT INTO notejam.notes VALUES (?, ?, ?, ?, ?, ?, ?);', [1, 1, 1, 'Note 1', 'Text', 1, 1], 
     function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
         })
-    db.query('INSERT INTO notes VALUES (?, ?, ?, ?, ?, ?, ?);', [2, 1, 1, 'Note 2', 'Text', 1, 1], 
+    db.query('INSERT INTO notejam.notes VALUES (?, ?, ?, ?, ?, ?, ?);', [2, 1, 1, 'Note 2', 'Text', 1, 1], 
     function (err, results, fields) {
                 if (err) throw err;
         console.log('Inserted ' + results.affectedRows + ' row(s).');
