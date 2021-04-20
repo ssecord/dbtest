@@ -26,6 +26,18 @@ db.connect(
 });
 
 function queryDatabase(){
+    db.query('DROP TABLE IF EXISTS users;', function (err, results, fields) { 
+        if (err) throw err; 
+        console.log('Dropped Users table if existed.');
+    })
+    db.query('DROP TABLE IF EXISTS pads;', function (err, results, fields) { 
+        if (err) throw err; 
+        console.log('Dropped Pads table if existed.');
+    })
+    db.query('DROP TABLE IF EXISTS notes;', function (err, results, fields) { 
+        if (err) throw err; 
+        console.log('Dropped Notes table if existed.');
+    })
     db.query('CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,email VARCHAR(75) NOT NULL,password VARCHAR(128) NOT NULL);', function (err, results, fields) { 
         if (err) throw err; 
         console.log('Created Users table.');
